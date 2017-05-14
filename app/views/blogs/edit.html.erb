@@ -1,0 +1,12 @@
+<p id ="notice"><%= notice %></p>
+
+
+
+<p>今のつぶやき</p>
+<%= @blog.content %>
+<% if @blog.image? %>
+  <%= image_tag @blog.image.url %>
+<% end %>
+
+
+<%= render 'form' %>
