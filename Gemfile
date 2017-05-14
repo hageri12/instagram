@@ -56,3 +56,5 @@ gem 'carrierwave'
 gem 'rmagick'
 
 gem 'devise'
+
+gem 'rails_12factor', group: :production
