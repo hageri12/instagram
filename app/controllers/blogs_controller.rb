@@ -12,6 +12,7 @@ class BlogsController < ApplicationController
 
   def create
     @blog = Blog.create(blogs_params)
+    @blog.user_id = current_user.id
     if @blog.save
       redirect_to blogs_path,notice: "投稿できました！"
     else
@@ -35,6 +36,8 @@ class BlogsController < ApplicationController
    redirect_to blogs_path, notice: "削除できました！"
  end
 
+def slot
+end
 
 
   private
