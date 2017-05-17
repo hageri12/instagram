@@ -88,11 +88,11 @@ Rails.application.configure do
 ActionMailer::Base.smtp_settings =
 {
  config.action_mailer.default_url_options = {host: 'https://still-anchorage-63864.herokuapp.com'}
- user_name: ENV['SENDGRID_USERNAME'],
- password: ENV['SENDGRID_PASSWORD'],
- domain: "heroku.com",
- address: "smtp.sendgrid.net",
- port: 587,
+ user_name:ENV['SENDGRID_USERNAME'],
+ password:ENV['SENDGRID_PASSWORD'],
+ domain:"heroku.com",
+ address:"smtp.sendgrid.net",
+ port:587,
  authentication: :plain,
  enable_starttls_auto: true
 }
