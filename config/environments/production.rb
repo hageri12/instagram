@@ -90,7 +90,7 @@ ActionMailer::Base.smtp_settings =
  config.action_mailer.default_url_options = {host: 'https://still-anchorage-63864.herokuapp.com'}
  user_name: ENV['SENDGRID_USERNAME'],
  password: ENV['SENDGRID_PASSWORD'],
- domain: "heroku.com",
+ domain: "https://still-anchorage-63864.herokuapp.com/",
  address: "smtp.sendgrid.net",
  port: 587,
  authentication: :plain,
