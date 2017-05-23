@@ -5,6 +5,7 @@
 </section>
 
 <% @blogs.each do |blog| %>
+  <%= blog.user.name %>
   <%= blog.content %>
   <% if blog.image? %>
     <%= image_tag blog.image.url %>
