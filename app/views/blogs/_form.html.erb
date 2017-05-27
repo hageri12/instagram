@@ -1,5 +1,24 @@
 <%= form_for(@blog) do |f| %>
 
+
+<div class="container">
+ <div class="row">
+  <div class="col-md-offset-4 col-md-4">
+  <%= f.label :image %><br>
+  <div class="btn"><%= f.file_field :image %></div>
+  <br>
+  <br>
+  <br>
+  <%= f.label :content %><br>
+  <%= f.text_field :content %>
+  <br>
+  <br>
+  <%= f.submit'投稿',class: 'btn btn-primary btn-block' %>
+<% end %>
+</div>
+</div>
+</div>
+
 <% if @blog.errors.any? %>
   <div id="error_explanation">
     <h2><%= @blog.errors.count %>件のエラーがあります。</h2>
@@ -11,17 +30,3 @@
     </ul>
   </div>
 <% end %>
-
-
-  <%= f.label :image %>
-  <%= f.file_field :image %>
-  <br>
-  <%= f.label :content %>
-  <%= f.text_field :content %>
-  <br>
-  <%= f.submit %>
-
-<% end %>
-
-
-<%= link_to "一覧",blogs_path %>

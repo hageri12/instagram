@@ -1,7 +1,8 @@
-
+<% if notice || alert %>
 <section class="main-header">
-  <p class="flash"><%= notice %><%= alert %></p>
+  <p class="flash alert alert-success"><%= notice %><%= alert %></p>
 </section>
+<% end %>
 
 <h3 class="index-intro">＃自分の好きな画像でスロットゲームをしよう！</h3>
 
@@ -14,11 +15,14 @@
         <%= image_tag blog.image.url %>
       <% end %>
       <br>
-      <%= blog.content %><br>
+      <%= blog.content %>
+      <br>
+      <br>
+      <div class="iconimage"><%= profile_img(blog.user) if profile_img(blog.user)  %></div>
       <%= blog.user.name %><br>
       <%= link_to "編集", edit_blog_path(blog.id) %>
       <%= link_to "削除",blog_path(blog.id),method: :delete,data:{confirm:'消せたのだ！'} %>
     </div>
-    <% end %>
+<% end %>
  </div>
 </div>
