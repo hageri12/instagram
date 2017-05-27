@@ -12,14 +12,28 @@
   <body>
 
     <header>
-      <% if user_signed_in? %>
-        <li><%= link_to 'マイページ', edit_user_registration_path %></li>
-        <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
-      <% else %>
-        <li><%= link_to 'ログイン', new_user_session_path %></li>
-        <li><%= link_to 'サインアップ', new_user_registration_path %></li>
-      <% end %>
+      <div class="header">
+       <div class="container-fluid">
+        <div class="row">
+          <div class="title col-md-7">
+            <li><%= link_to 'Slotgram', blogs_path,:style=>"color:black;" %></li>
+          </div>
+          <div class="col-md-5">
+              <% if user_signed_in? %>
+                <li><%= link_to '新規投稿', new_blog_path %></li>
+                <li><%= link_to 'マイページ', edit_user_registration_path %></li>
+                <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
+              <% else %>
+                <li><%= link_to 'ログイン', new_user_session_path %></li>
+                <li><%= link_to 'サインアップ', new_user_registration_path %></li>
+              <% end %>
+          </div>
+        </div>
+       </div>
+      </div>
     </header>
-    <%= yield %>
+    <div class ="main">
+      <%= yield %>
+    </div>
   </body>
 </html>

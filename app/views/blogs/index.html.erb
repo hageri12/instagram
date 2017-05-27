@@ -1,17 +1,24 @@
-<h1>Instagram</h1>
 
 <section class="main-header">
   <p class="flash"><%= notice %><%= alert %></p>
 </section>
 
-<% @blogs.each do |blog| %>
-  <%= blog.user.name %>
-  <%= blog.content %>
-  <% if blog.image? %>
-    <%= image_tag blog.image.url %>
-  <% end %>
-  <%= link_to "編集", edit_blog_path(blog.id) %>
-  <%= link_to "削除する",blog_path(blog.id),method: :delete,data:{confirm:'消せたのだ！'} %>
-<% end %>
+<h3 class="index-intro">＃自分の好きな画像でスロットゲームをしよう！</h3>
 
-<%= link_to "新規投稿",new_blog_path %>
+
+<div class="container">
+ <div class="row">
+    <% @blogs.each do |blog| %>
+    <div class="contents col-md-4">
+      <% if blog.image? %>
+        <%= image_tag blog.image.url %>
+      <% end %>
+      <br>
+      <%= blog.content %><br>
+      <%= blog.user.name %><br>
+      <%= link_to "編集", edit_blog_path(blog.id) %>
+      <%= link_to "削除",blog_path(blog.id),method: :delete,data:{confirm:'消せたのだ！'} %>
+    </div>
+    <% end %>
+ </div>
+</div>

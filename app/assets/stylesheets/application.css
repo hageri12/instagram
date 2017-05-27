@@ -14,10 +14,27 @@
  *= require_self
  */
 
-img{
-  max-width: 20%;
+
+.header{
+  background-color: white;
+  width:879;
+  height: 83;
 }
 
-.flash{
-  padding-top: 10px;
+.header li{
+ display: inline-block;
+ padding:32px;
+ }
+
+.header .title{
+  font-size:19px;
+  color: black;
+}
+
+body{
+  background-color: #FAFAFA;
+}
+
+.main{
+  text-align:center;
 }

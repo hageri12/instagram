@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   root 'blogs#index'
   resources :blogs, only:[:index,:new,:create,:edit,:update,:destroy]

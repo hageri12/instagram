@@ -1,3 +1,19 @@
 // Place all the styles related to the blogs controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.index-intro{
+  margin:100px;
+}
+
+.contents{
+  height:300px;
+}
+
+.contents img{
+  max-width: 100%;
+  height: 200px;
+}
+.flash{
+  padding-top: 10px;
+}
