@@ -1,0 +1,128 @@
+<br>
+<h1>My Slot!</h1>
+<br>
+<br>
+
+
+<%# @slot.each do |slot| %>
+  <%# if slot.image? %>
+    <%#= image_tag slot.image.url %>
+  <%# end %>
+<%# end %>
+
+<div class="slot">
+  <div>
+    <img class="panel" id="panel0" src="<%= @slot[0].image.url %>">
+    <img class="panel" id="panel1" src="<%= @slot[1].image.url %>">
+    <img class="panel" id="panel2" src="<%= @slot[2].image.url %>">
+  </div>
+  <div>
+    <div class="btn inactive" id="btn0">?</div>
+    <div class="btn inactive" id="btn1">?</div>
+    <div class="btn inactive" id="btn2">?</div>
+  </div>
+  <br>
+  <div id="spinButton">SPIN</div>
+  <br>
+  <div id="hantei"></div>
+  <script>
+    (function(){
+      'use strict';
+
+      var panels = new Array();
+      panels[0] = new Image();
+      panels[0] = "<%= @slot[0].image.url %>";
+      panels[1] = new Image();
+      panels[1] = "<%= @slot[1].image.url %>";
+      panels[2] = new Image();
+      panels[2] = "<%= @slot[2].image.url %>";
+
+      var timers = [];
+      var results = [];
+      var stopCount = 0;
+      var isPlaying = false;
+
+      var panel0 = document.getElementById('panel0');
+      var panel1 = document.getElementById('panel1');
+      var panel2 = document.getElementById('panel2');
+      var btn0 = document.getElementById('btn0');
+      var btn1 = document.getElementById('btn1');
+      var btn2 = document.getElementById('btn2');
+      var spinButton = document.getElementById('spinButton');
+      var hantei = document.getElementById('hantei');
+
+      spinButton.addEventListener('click', function() {
+        if(isPlaying) return;
+        isPlaying = true;
+        if(hantei){
+          hantei.innerHTML = ""
+        }
+        this.className = 'inactive';
+        btn0.className = 'btn';
+        btn1.className = 'btn';
+        btn2.className = 'btn';
+        panel0.className = 'panel';
+        panel1.className = 'panel';
+        panel2.className = 'panel';
+
+        runSlot(0, panel0);
+        runSlot(1, panel1);
+        runSlot(2, panel2);
+      });
+
+      function runSlot(n,panel){
+        panel.src = panels[Math.floor(Math.random() * panels.length)];
+        timers[n] = setTimeout(function(){
+          runSlot(n,panel)
+        },50);
+      }
+
+      btn0.addEventListener('click', function(){
+        stopSlot(0,panel0,this);
+      });
+
+      btn1.addEventListener('click', function(){
+        stopSlot(1,panel1,this);
+      });
+
+      btn2.addEventListener('click', function(){
+        stopSlot(2,panel2,this);
+      });
+
+      function stopSlot(n, panel, btn){
+        if(!isPlaying || results[n] !== undefined) return;
+        btn.className = 'btn inactive';
+        clearTimeout(timers[n]);
+        results[n] = panel.src;
+        stopCount++;
+
+        if(stopCount === 3){
+            checkResults();
+            isPlaying = false;
+            timers = [];
+            results = [];
+            stopCount = 0;
+            spinButton.className = '';
+        }
+      }
+
+      function checkResults(){
+        if(results[0] !== results[1] && results[0] !== results[2]){
+          panel0.className = 'panel unmatched';
+        }
+        if(results[1] !== results[0] && results[1] !== results[2]){
+          panel1.className = 'panel unmatched';
+        }
+        if(results[2] !== results[0] && results[2] !== results[1]){
+          panel2.className = 'panel unmatched';
+        }
+        if(results[0]==results[1] && results[0]==results[2]){
+          hantei.innerHTML = "BINBINGO!!"
+        }
+
+      }
+
+
+    })();
+  </script>
+</div>

@@ -4,16 +4,22 @@
 </section>
 <% end %>
 
-<h3 class="index-intro">＃自分の好きな画像でスロットゲームをしよう！</h3>
+<h3 class="index-intro">＃自分の好きな画像でスロットゲームをしよう！<br>
+画像を３つ選んでスロットにするボタンを押してみよう！</h3>
+
+
 
 
 <div class="container">
  <div class="row">
+ <%= form_for(@slot, url: slot_path,method: :get) do |f| %>
     <% @blogs.each do |blog| %>
     <div class="contents col-md-4">
       <% if blog.image? %>
         <%= image_tag blog.image.url %>
       <% end %>
+      <br>
+      <%= check_box_tag 'id[]',blog.id %>
       <br>
       <%= blog.content %>
       <br>
@@ -23,6 +29,12 @@
       <%= link_to "編集", edit_blog_path(blog.id) %>
       <%= link_to "削除",blog_path(blog.id),method: :delete,data:{confirm:'消せたのだ！'} %>
     </div>
-<% end %>
+   <% end %>
+   <div class="row">
+     <div class="slotbtn">
+       <%= f.submit 'スロットにする',class: 'btn btn-primary btn-block'  %>
+     </div>
+   </div>
+  <% end %>
  </div>
 </div>
